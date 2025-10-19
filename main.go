@@ -3,6 +3,7 @@ package main
 import (
 	"log/slog"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/carlosEA28/api"
@@ -18,8 +19,8 @@ func main() {
 }
 
 func run() error {
-
-	handler := api.NewHandler()
+	apiKey := os.Getenv("OMDB_API_KEY")
+	handler := api.NewHandler(apiKey)
 
 	s := http.Server{
 		ReadTimeout:  10 * time.Second,
